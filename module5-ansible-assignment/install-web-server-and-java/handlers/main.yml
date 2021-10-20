@@ -1,0 +1,32 @@
+---
+# handlers file for install-web-server-and-java
+
+ - name: Send Email Notification to apache Server Group
+   mail:
+     host: smtp.gmail.com
+     port: 587
+     username: "{{ email_username }}"
+     password: "{{ email_app_password }}"
+     to: "{{ email_username }}"
+     subject: Ansible-report
+     body: System {{ ansible_hostname }} has been successfully provisioned with apache web server.
+   delegate_to: localhost
+   listen: send-message-apache
+
+ - name: Install Java on apache servers
+   apt:
+     name: openjdk-8-jre
+     state: present
+   listen: send-message-apache
+
+ - name: Send Email Notification to nginx Server Group
+   mail:
+     host: smtp.gmail.com
+     port: 587
+     username: "{{ email_username }}"
+     password: "{{ email_app_password }}"
+     to: "{{ email_username }}"
+     subject: Ansible-report
+     body: System {{ ansible_hostname }} has been successfully provisioned with nginx web server.
+   delegate_to: localhost
+   listen: send-message-nginx

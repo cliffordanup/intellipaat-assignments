@@ -1,0 +1,3 @@
+# Ansible Vault Password File to be excluded from git
+
+vault-passwd.yml

@@ -1,0 +1,8 @@
+---
+# Create /var/www/html Directory if it does not already exist
+
+ - name: Create /var/www/html Directory
+   file:
+     path: /var/www/html
+     state: directory
+     mode: 0755

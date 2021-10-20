@@ -1,0 +1,9 @@
+---
+# Playbook to install apache and nginx and Java on apache web servers
+
+ - name: Install apache nginx and Java
+   hosts: apacheservers:nginxservers
+   vars_files:
+     - email-notification-vault.yml
+   roles:
+     - install-web-server-and-java

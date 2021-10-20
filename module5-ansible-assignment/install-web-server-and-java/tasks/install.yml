@@ -1,0 +1,14 @@
+---
+# Install apache and nginx
+
+ - name: install-apache
+   apt:
+     name: "{{ apache_package }}"
+     state: present
+   when: group_names[0] == "apacheservers"
+
+ - name: install-nginx
+   apt:
+     name: "{{ nginx_package }}"
+     state: present
+   when: group_names[0] == "nginxservers"

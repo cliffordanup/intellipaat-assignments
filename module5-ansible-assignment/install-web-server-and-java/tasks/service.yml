@@ -1,0 +1,14 @@
+---
+# Start the apache and nginx services
+
+ - name: start-apache-service
+   service:
+     name: "{{ apache_package }}"
+     state: started
+   when: group_names[0] == "apacheservers"
+
+ - name: start-nginx-service
+   service:
+     name: "{{ nginx_package }}"
+     state: started
+   when: group_names[0] == "nginxservers"

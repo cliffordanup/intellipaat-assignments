@@ -1,0 +1,8 @@
+---
+# vars file for install-web-server-and-java
+
+apache_group: apacheservers
+nginx_group: nginxservers
+
+apache_package: apache2
+nginx_package: nginx
