@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: module8-kubernetes1-assignment-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /pod1
+        backend:
+          serviceName: pod1-service
+          servicePort: 8080
+
+      - path: /pod2
+        backend:
+          serviceName: pod2-service
+          servicePort: 8082
