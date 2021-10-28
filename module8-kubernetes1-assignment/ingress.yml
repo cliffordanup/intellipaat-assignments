@@ -1,19 +1,26 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: module8-kubernetes1-assignment-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - http:
       paths:
       - path: /pod1
+        pathType: Exact
         backend:
-          serviceName: pod1-service
-          servicePort: 8080
+          service:
+            name: pod1-service
+            port:
+              number: 8080
 
       - path: /pod2
+        pathType: Exact
         backend:
-          serviceName: pod2-service
-          servicePort: 8082
+          service:
+            name: pod2-service
+            port:
+              number: 8082
