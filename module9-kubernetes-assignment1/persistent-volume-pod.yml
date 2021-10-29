@@ -1,0 +1,29 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: persistent-volume-pod
+spec:
+  containers:
+  - name: persistent-volume-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+    env:
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: my-secret
+          key: password
+    volumeMounts:
+      - name: nfs-pvc
+        mountPath: "/mnt"
+  restartPolicy: "Never"
+  tolerations:
+  - key: "persistent-volumes"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+  volumes:
+    - name: nfs-pvc
+      persistentVolumeClaim:
+        claimName: persistent-volume-claim
